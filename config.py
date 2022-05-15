@@ -1,1 +1,1 @@
-PATH= 'data.json'
+FILE_NAME= 'data.json'

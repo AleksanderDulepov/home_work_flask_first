@@ -1,10 +1,10 @@
 from utils import *
-from config import PATH
+from config import FILE_NAME
 from flask import Flask
 
 
 def main():
-    list_from_json = load_data(PATH)
+    list_from_json = load_data(FILE_NAME)
     list_objects = get_objects_list(list_from_json)
 
     app = Flask(__name__)
@@ -13,10 +13,8 @@ def main():
     def page_general():
         total_info_list = []
         for i in list_objects:
-            total_info_list.append(f'Имя кандидата - {i.name}\n'
-                                   f'Позиция кандидата - {i.position}\n'
-                                   f'Навыки - {i.skills}\n')
-        return '\n'.join(total_info_list)
+            total_info_list.append(f'{i.name_to_print}\n{i.position_to_print}\n{i.skills_to_print}\n')
+        return '<pre>\n'+"\n".join(total_info_list)+'<pre>'
 
     @app.route('/candidates/<int:cand_id>')
     def page_candidates(cand_id):
@@ -30,7 +28,7 @@ def main():
 
     @app.route('/skills/<skill>')
     def page_skills(skill):
-        cand_with_skill=[]
+        cand_with_skill = []
         for i in list_objects:
             if skill.lower() in i.skills:
                 cand_with_skill.append(f'Имя кандидата - {i.name}\n'
