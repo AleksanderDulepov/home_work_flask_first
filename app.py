@@ -17,6 +17,17 @@ def main():
                                    f'Позиция кандидата - {i.position}\n'
                                    f'Навыки - {i.skills}\n')
         return '\n'.join(total_info_list)
+
+    @app.route('/candidates/<int:cand_id>')
+    def page_candidates(cand_id):
+            for i in list_objects:
+                if cand_id == i.id:
+                    return (f'{i.picture}\n\n'
+                            f'Имя кандидата - {i.name}\n'
+                            f'Позиция кандидата - {i.position}\n'
+                            f'Навыки - {i.skills}\n')
+            return f'Кандидата с id {cand_id} не существует!'
+
     app.run()
 
 
