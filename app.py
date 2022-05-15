@@ -20,13 +20,26 @@ def main():
 
     @app.route('/candidates/<int:cand_id>')
     def page_candidates(cand_id):
-            for i in list_objects:
-                if cand_id == i.id:
-                    return (f'{i.picture}\n\n'
-                            f'Имя кандидата - {i.name}\n'
-                            f'Позиция кандидата - {i.position}\n'
-                            f'Навыки - {i.skills}\n')
-            return f'Кандидата с id {cand_id} не существует!'
+        for i in list_objects:
+            if cand_id == i.id:
+                return (f'{i.picture}\n\n'
+                        f'Имя кандидата - {i.name}\n'
+                        f'Позиция кандидата - {i.position}\n'
+                        f'Навыки - {i.skills}\n')
+        return f'Кандидата с id {cand_id} нет в базе данных!'
+
+    @app.route('/skills/<skill>')
+    def page_skills(skill):
+        cand_with_skill=[]
+        for i in list_objects:
+            if skill.lower() in i.skills:
+                cand_with_skill.append(f'Имя кандидата - {i.name}\n'
+                                       f'Позиция кандидата - {i.position}\n'
+                                       f'Навыки - {i.skills}\n')
+        if not cand_with_skill:
+            return f'Кандидата со скиллом  {skill} нет в базе данных!'
+
+        return '\n'.join(cand_with_skill)
 
     app.run()
 
