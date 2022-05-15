@@ -7,8 +7,8 @@ def load_data(path):
     This function to load json file
     '''
     with open(path) as file:
-        x=json.load(file)
-        return x
+        file_ = json.load(file)
+        return file_
 
 
 def get_objects_list(added_list):
@@ -20,3 +20,12 @@ def get_objects_list(added_list):
         list_objects.append(
             Candidate(i['id'], i['name'], i['picture'], i['position'], i['gender'], i['age'], i['skills']))
     return list_objects
+
+
+def create_output(cand_object):
+    '''
+    This function to create f string with important information about particular candidate
+    '''
+    return (f'Имя кандидата - {cand_object.name}\n'
+            f'Позиция кандидата - {cand_object.position}\n'
+            f'Навыки - {cand_object.skills}\n')
