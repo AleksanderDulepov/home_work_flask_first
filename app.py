@@ -30,7 +30,7 @@ def main():
     def page_skills(skill, list_=list_objects):
         cand_with_skill = []
         for i in list_:
-            if skill.lower() in i.skills:
+            if skill.lower() in i.get_skills_list():
                 cand_with_skill.append(create_output(i))
         if not cand_with_skill:
             return f'Кандидата со скиллом  {skill} нет в базе данных!'

@@ -10,3 +10,7 @@ class Candidate:
 
     def __repr__(self):
         return f'This is a Candidate class object {self.name}'
+
+    def get_skills_list(self):
+        skills_list = self.skills.split(', ')
+        return skills_list
