@@ -6,9 +6,9 @@ def load_data(path):
     '''
     This function to load json file
     '''
-    with open(path) as file:
+    with open(path, "r", encoding='utf-8') as file:
         file_ = json.load(file)
-        return file_
+    return file_
 
 
 def get_objects_list(added_list):
