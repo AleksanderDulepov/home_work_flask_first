@@ -9,6 +9,7 @@ def main():
 
     app = Flask(__name__)
 
+    # декоратор обработки при обращении к главной странице
     @app.route('/')
     def page_general(list_=list_objects):
         total_info_list = []
@@ -16,6 +17,7 @@ def main():
             total_info_list.append(create_output(i))
         return '<pre>\n' + "\n".join(total_info_list) + '</pre>'
 
+    # декоратор обработки при обращении к конкретному id кандидата
     @app.route('/candidates/<int:cand_id>')
     def page_candidates(cand_id, list_=list_objects):
         for i in list_:
@@ -26,6 +28,7 @@ def main():
                         f'</pre>')
         return f'Кандидата с id {cand_id} нет в базе данных!'
 
+    # декотратор обработки при поиске кандидатов через конкретный скилл
     @app.route('/skills/<skill>')
     def page_skills(skill, list_=list_objects):
         cand_with_skill = []
